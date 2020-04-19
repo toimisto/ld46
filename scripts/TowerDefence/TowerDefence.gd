@@ -21,6 +21,12 @@ func open_level(lvl):
     level = level_resource.instance()
     add_child(level)
     var path = level.get_node("MobPath")
+    var follow = level.get_node("MobPath/PathFollow")
+    print(follow)
     var level_length = path.get_curve().get_baked_length()
     for i in range(level_length):
-        print(i)
+        if i%15 == 0:
+            follow.offset = i
+            var block = PathBlock.instance()
+            block.position = follow.position 
+            add_child(block)
